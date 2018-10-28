@@ -19,12 +19,18 @@
         <div><span id="endGame"></span></div>
         <div><button id="clear">clear</button></div>
 	<script>
-        debugger
+        
 
+
+        
+        //initiate the game
+        theGame();
+
+        function theGame() {
+        
         var wins=0;
         var loses=0;
-        var remain=10;
-        var clear=false;
+        var remain=9;
 
         // -----------computer pick a letter----------------
         var letterPool= ["a","b","c","d",
@@ -37,55 +43,71 @@
                              
         var computerChoice=letterPool[Math.floor(Math.random()*26)]
         $("#computer-choice").text(computerChoice)
+
         // ------------user guess----------------------------
         
-        document.onkeyup= function startGame(event) {
+        document.onkeyup= function (event) {
+
            var userGuess=event.key
         //     $("#your-guess").append(userGuess + " ")
         
-        // --------------the game rule-----------------------
+        // --------------set the game rule-----------------------
 
-        if ( userGuess===computerChoice ) {
-            $("#your-guess").append(userGuess + " ")
-            wins++;
-            console.log(wins)
-            $("#u-win").text(wins)
+
+            var gameOver = false
+        
+            if ( userGuess===computerChoice ) {
+                wins++
+                $("#u-win").text(wins)
+                gameOver = true;
+                $("#endGame").text("The letter is "+computerChoice+" ! "+"Yeh! YOU WIN!")
+                
+
         } else {
             if ( remain>0 ) {
                 $("#your-guess").append(userGuess + " ")
                 remain--;
                 console.log(remain)
                 $("#chance-left").text(remain) }
-                else {
-                    loses=1
+                else if (remain===0) {
+                    loses+1
                     $("#u-lose").text(loses)
-                    // $("#your-guess").empty()
-                    // console.log($("#your-guess"))
+                    gameOver = true;
                     $("#endGame").text("Game Over Man! Game over!")
+                    
                 }
-                
+
+            }
+
+            if (gameOver) {
+                document.onkeyup= false
+            }
 
             }
         }
+    //}
 
         //-----------------reset the game------------------
-        $("#clear").on("click", function(){
-            var userGuess=event.key
-
-            var computerChoice=letterPool[Math.floor(Math.random()*26)]
-            $("#computer-choice").text(computerChoice) 
+        
+        function reset(){
                       
-            var remain =10;
-            console.log(remain)
+            var remain =9;
+            var wins=0;
+            var loses=0;
+
             $("#chance-left").text(remain)
-
+            $("#u-win").text(wins)
+            $("#u-lose").text(loses)
+            
             $("#your-guess").empty()
-            console.log($("#your-guess"))
+            $("#endGame").text("")
 
+            theGame()
+        }
 
-
-            var clear = true;
-        });
+        $("#clear").on("click", function(){
+            reset()
+        })
         
 
 
