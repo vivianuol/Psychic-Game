@@ -16,8 +16,16 @@
             <p>Guess Left:<span id="chance-left"></span></p>
             <p>Your guess so far: <span id="your-guess"></span></p>
         </div>
+        <div><span id="endGame"></span></div>
+        <div><button id="clear">clear</button></div>
 	<script>
         debugger
+
+        var wins=0;
+        var loses=0;
+        var remain=10;
+        var clear=false;
+
         // -----------computer pick a letter----------------
         var letterPool= ["a","b","c","d",
                              "e","f","g","h",
@@ -26,38 +34,60 @@
                              "q","r","s","t",
                              "u","v","w","x",
                              "y","z"]
-        
-        var wins=0;
-        var loses=0;
-        var remain=10;
                              
         var computerChoice=letterPool[Math.floor(Math.random()*26)]
         $("#computer-choice").text(computerChoice)
         // ------------user guess----------------------------
+        
         document.onkeyup= function startGame(event) {
-        var userGuess=event.key
-            $("#your-guess").append(userGuess + " ")
+           var userGuess=event.key
+        //     $("#your-guess").append(userGuess + " ")
         
         // --------------the game rule-----------------------
 
         if ( userGuess===computerChoice ) {
+            $("#your-guess").append(userGuess + " ")
             wins++;
             console.log(wins)
             $("#u-win").text(wins)
         } else {
             if ( remain>0 ) {
+                $("#your-guess").append(userGuess + " ")
                 remain--;
                 console.log(remain)
                 $("#chance-left").text(remain) }
                 else {
-                    loses++
+                    loses=1
                     $("#u-lose").text(loses)
-                    $("your-guess").text("")
-                    $(".container").append("<h1>Game Over Man! Game over!</h1>")
+                    // $("#your-guess").empty()
+                    // console.log($("#your-guess"))
+                    $("#endGame").text("Game Over Man! Game over!")
                 }
+                
 
             }
         }
+
+        //-----------------reset the game------------------
+        $("#clear").on("click", function(){
+            var userGuess=event.key
+
+            var computerChoice=letterPool[Math.floor(Math.random()*26)]
+            $("#computer-choice").text(computerChoice) 
+                      
+            var remain =10;
+            console.log(remain)
+            $("#chance-left").text(remain)
+
+            $("#your-guess").empty()
+            console.log($("#your-guess"))
+
+
+
+            var clear = true;
+        });
+        
+
 
 	</script>
     </body>
