@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en-us">
+    <head>
+        <title>psychic game</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>        
+        <!--<link type="text/css" rel="stylesheet" href="style.css"> -->
+    </head>
+    <body>
+        <div class="container">
+            <h1>The Psychic Game</h1>
+            <p>Guess what letter I'm thinking of: <span id="computer-choice"></span></p>
+            <p>Wins:<span id="u-win">0</span></p>
+            <p>Loses:<span id="u-lose">0</span></p>
+            <p>Guess Left:<span id="chance-left"></span></p>
+            <p>Your guess so far: <span id="your-guess"></span></p>
+        </div>
+	<script>
+        debugger
+        // -----------computer pick a letter----------------
+        var letterPool= ["a","b","c","d",
+                             "e","f","g","h",
+                             "i","j","k","l",
+                             "m","n","o","p",
+                             "q","r","s","t",
+                             "u","v","w","x",
+                             "y","z"]
+        
+        var wins=0;
+        var loses=0;
+        var remain=10;
+                             
+        var computerChoice=letterPool[Math.floor(Math.random()*26)]
+        $("#computer-choice").text(computerChoice)
+        // ------------user guess----------------------------
+        document.onkeyup= function startGame(event) {
+        var userGuess=event.key
+            $("#your-guess").append(userGuess + " ")
+        
+        // --------------the game rule-----------------------
+
+        if ( userGuess===computerChoice ) {
+            wins++;
+            console.log(wins)
+            $("#u-win").text(wins)
+        } else {
+            if ( remain>0 ) {
+                remain--;
+                console.log(remain)
+                $("#chance-left").text(remain) }
+                else {
+                    loses++
+                    $("#u-lose").text(loses)
+                    $("your-guess").text("")
+                    $(".container").append("<h1>Game Over Man! Game over!</h1>")
+                }
+
+            }
+        }
+
+	</script>
+    </body>
+</html>
