@@ -18,18 +18,19 @@
         </div>
         <div><span id="endGame"></span></div>
         <div><button id="clear">clear</button></div>
-	<script>
+    
+    <script>
         
 
-
+        var wins=0;
+        var loses=0;
         
         //initiate the game
         theGame();
 
         function theGame() {
         
-        var wins=0;
-        var loses=0;
+
         var remain=9;
 
         // -----------computer pick a letter----------------
@@ -68,23 +69,23 @@
                 $("#your-guess").append(userGuess + " ")
                 remain--;
                 console.log(remain)
-                $("#chance-left").text(remain) }
-                else if (remain===0) {
-                    loses+1
+                $("#chance-left").text(remain) 
+            } else if (remain===0) {
+                    loses++
                     $("#u-lose").text(loses)
                     gameOver = true;
                     $("#endGame").text("Game Over Man! Game over!")
                     
-                }
-
             }
+
+        }
 
             if (gameOver) {
-                document.onkeyup= false
+                document.onkeyup= function() {};
             }
 
-            }
         }
+    }
     //}
 
         //-----------------reset the game------------------
@@ -92,8 +93,8 @@
         function reset(){
                       
             var remain =9;
-            var wins=0;
-            var loses=0;
+            // var wins=0;
+            // var loses=0;
 
             $("#chance-left").text(remain)
             $("#u-win").text(wins)
