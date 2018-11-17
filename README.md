@@ -9,4 +9,4 @@
 
  You can clear out the win-lose counter by click the restart button.
  
- the game is [here]().
+ the game is [here](https://vivianuol.github.io/Psychic-Game/).
