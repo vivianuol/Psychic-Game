@@ -4,13 +4,13 @@
         <title>psychic game</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>        
-        <!--<link type="text/css" rel="stylesheet" href="style.css"> -->
+        <link type="text/css" rel="stylesheet" href="assets/css/style.css">
+        
     </head>
     <body>
         <div class="container">
             <h1>The Psychic Game</h1>
-            <p>Guess what letter I'm thinking of: <span id="computer-choice"></span></p>
+            <!-- <p>Guess what letter I'm thinking of: <span id="computer-choice"></span></p> -->
             <p>Wins:<span id="u-win">0</span></p>
             <p>Loses:<span id="u-lose">0</span></p>
             <p>Guess Left:<span id="chance-left"></span></p>
@@ -43,8 +43,8 @@
                              "y","z"]
                              
         var computerChoice=letterPool[Math.floor(Math.random()*26)]
-        $("#computer-choice").text(computerChoice)
-
+        // $("#computer-choice").text(computerChoice)
+            console.log("computerChoice: "+computerChoice)
         // ------------user guess----------------------------
         
         document.onkeyup= function (event) {
@@ -86,7 +86,7 @@
 
         }
     }
-    //}
+    
 
         //-----------------reset the game------------------
         
@@ -112,6 +112,6 @@
         
 
 
-	</script>
+    </script>
     </body>
 </html>
