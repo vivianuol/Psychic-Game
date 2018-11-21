@@ -1,0 +1,12 @@
+body {
+    background: url("../images/ioana-cristiana-1049180-unsplash.jpg"), no-repeat, no-repeat, fixed;
+    background-size: cover;
+}
+
+.container {
+    background-color: rgba(240, 235, 235, 0.6);
+    margin: 20px 100px;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 2em;
+}

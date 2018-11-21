@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link type="text/css" rel="stylesheet" href="assets/css/style.css">
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
         
     </head>
     <body>
@@ -15,9 +16,10 @@
             <p>Loses:<span id="u-lose">0</span></p>
             <p>Guess Left:<span id="chance-left"></span></p>
             <p>Your guess so far: <span id="your-guess"></span></p>
+            <div><span id="endGame"></span></div>
+            <div><button id="clear">clear</button></div>
         </div>
-        <div><span id="endGame"></span></div>
-        <div><button id="clear">clear</button></div>
+
     
     <script>
         
@@ -50,20 +52,18 @@
         document.onkeyup= function (event) {
 
            var userGuess=event.key
-        //     $("#your-guess").append(userGuess + " ")
         
         // --------------set the game rule-----------------------
 
 
-            var gameOver = false
-        
-            if ( userGuess===computerChoice ) {
-                wins++
-                $("#u-win").text(wins)
-                gameOver = true;
-                $("#endGame").text("The letter is "+computerChoice+" ! "+"Yeh! YOU WIN!")
+        var gameOver = false
+    
+        if ( userGuess===computerChoice ) {
+            wins++
+            $("#u-win").text(wins)
+            gameOver = true;
+            $("#endGame").text("The letter is "+computerChoice+" ! "+"Yeh! YOU WIN!")
                 
-
         } else {
             if ( remain>0 ) {
                 $("#your-guess").append(userGuess + " ")
